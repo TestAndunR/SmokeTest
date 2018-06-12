@@ -1,6 +1,18 @@
 let AWS = require('aws-sdk');
-exports.handler = function(event, context, callback) {
-	let msg = event.message;
-	console.log(msg);
-	callback(null,'Successfully executed');
+const ddb = new AWS.DynamoDB.DocumentClient();
+exports.handler = function (event, context, callback) {
+
+	console.log("Success");
+	ddb.put({
+		TableName: 'Smoke',
+		Item: {}
+	}, function (err, data) {
+		if (err) {
+			//handle error
+		} else {
+			//your logic goes here
+		}
+	});
+
+	callback(null, 'Successfully executed');
 }
